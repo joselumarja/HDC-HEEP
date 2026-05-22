@@ -22,6 +22,11 @@ filesets:
     - hw/gr-heep/gr_heep.sv
     file_type: systemVerilogSource
 
+  hdc_rtl:
+    depend:
+    - x-heep::packages
+    - uclm:arco:hdc_obi
+
   # Simulation
   files_verilator_waiver:
     files:
@@ -196,6 +201,7 @@ targets:
   default: &default_target
     filesets:
     - files_rtl_generic
+    - hdc_rtl
     - target_sim? (tool_verilator? (files_verilator_waiver))
     toplevel: [gr_heep]
 
@@ -244,10 +250,17 @@ targets:
           - '--trace-max-array 1024'
           - '--x-assign unique'
           - '--x-initial unique'
+          - '--no-timing'
           - '--exe tb_top.cpp'
           - '-CFLAGS "-Wall -fpermissive"'
           - '-LDFLAGS "-pthread -lutil -lelf"'
           - "-Wall"
+          - "-Wno-TIMESCALEMOD"
+          - "-Wno-STMTDLY"
+          - "-Wno-WIDTHTRUNC"
+          - "-Wno-WIDTHEXPAND"
+          - "-Wno-UNUSEDPARAM"
+          - "-Wno-UNUSEDSIGNAL"
       modelsim:
         vlog_options:
         - -override_timescale 1ns/1ps

@@ -127,14 +127,14 @@ def config():
 
 def gr_heep_config():
 
-    ext_xbar_nmasters = 0
+    ext_xbar_nmasters = 1
 
     # External slaves memory map
     ext_xbar_slaves = {
-        #     "slave_0": {
-        #         "offset":    0x00000000,
-        #         "length":    0x00010000,
-        #     },
+             "HDC_ACCELERATOR": {
+                 "offset":    0x00000000,
+                 "length":    0x00010000,
+             }
         #     "slave_1": {
         #         "offset":    0x00010000,
         #         "length":    0x00010000,

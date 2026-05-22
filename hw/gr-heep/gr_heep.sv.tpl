@@ -308,6 +308,23 @@ module gr_heep (
       .ext_slave_req_o(gr_heep_slave_req),
       .ext_slave_resp_i(gr_heep_slave_resp)
     );
+
+    % if (gr_heep["xbar_nslaves"] > 0 and gr_heep["xbar_nmasters"] > 0):
+
+      hdc_accelerator_obi_wrapper #(
+        .FIFO_DEPTH(32)
+      ) hdc_accelerator_i (
+        .clk_i (clk_in_x),
+        .rst_ni(rst_nin_sync),
+
+        .hdc_slave_req_i  (gr_heep_slave_req [gr_heep_pkg::HdcAcceleratorIdx]),
+        .hdc_slave_resp_o (gr_heep_slave_resp[gr_heep_pkg::HdcAcceleratorIdx]),
+
+        .hdc_master_req_o (gr_heep_master_req [gr_heep_pkg::HdcAcceleratorIdx]),
+        .hdc_master_resp_i(gr_heep_master_resp[gr_heep_pkg::HdcAcceleratorIdx])
+      );
+
+    % endif
   % else:
     assign heep_core_instr_rsp = '0;
     assign heep_core_data_rsp = '0;

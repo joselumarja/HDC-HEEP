@@ -1,0 +1,24 @@
+// Copyright 2026 UCLM
+// Solderpad Hardware License, Version 2.1, see LICENSE.md for details.
+// SPDX-License-Identifier: Apache-2.0 WITH SHL-2.1
+
+{
+  name: "hdc_accelerator",
+  target_dir: "hdc_accelerator",
+
+  upstream: {
+    url: "https://github.com/joselumarja/HDC_Accelerator.git",
+    rev: "release",
+  },
+
+  exclude_from_upstream: [
+    ".github",
+    ".gitignore",
+    "HLS",
+    "notebooks",
+    "prototypes",
+    "rtl/tb"
+  ]
+
+  
+}
