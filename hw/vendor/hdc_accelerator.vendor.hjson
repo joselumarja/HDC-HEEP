@@ -8,7 +8,7 @@
 
   upstream: {
     url: "https://github.com/joselumarja/HDC_Accelerator.git",
-    rev: "release",
+    rev: "main",
   },
 
   exclude_from_upstream: [
